@@ -1,18 +1,5 @@
 (() => {
     "use strict";
-    function isWebp() {
-        function testWebP(callback) {
-            let webP = new Image;
-            webP.onload = webP.onerror = function() {
-                callback(2 == webP.height);
-            };
-            webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
-        }
-        testWebP((function(support) {
-            let className = true === support ? "webp" : "no-webp";
-            document.documentElement.classList.add(className);
-        }));
-    }
     let bodyLockStatus = true;
     let bodyLockToggle = (delay = 500) => {
         if (document.documentElement.classList.contains("lock")) bodyUnlock(delay); else bodyLock(delay);
@@ -59,15 +46,6 @@
             }
         }));
     }
-    let addWindowScrollEvent = false;
-    setTimeout((() => {
-        if (addWindowScrollEvent) {
-            let windowScroll = new Event("windowScroll");
-            window.addEventListener("scroll", (function(e) {
-                document.dispatchEvent(windowScroll);
-            }));
-        }
-    }), 0);
     class DynamicAdapt {
         constructor(type) {
             this.type = type;
@@ -386,6 +364,5 @@
         }
     })();
     window["FLS"] = true;
-    isWebp();
     menuInit();
 })();
